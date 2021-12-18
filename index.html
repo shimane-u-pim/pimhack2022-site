@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css"
-        integrity="sha512-fzA+tLgtwjys8FSpEdAGGamBJiWnHCwSkEu5P3EGr73U8AFnOSE1kzI6+RSYvf4zIs5BPWVrdzygD+nvZKbxIg=="
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css"
@@ -17,50 +17,76 @@
 
 <body>
     <header>
-        PimHack 2022
+        <img src="pimhack_logo.png" alt="PimHackロゴ">
     </header>
-    <div class="fullscreen-cover imaged"
-        style="background-image: url(https://source.unsplash.com/Q1p7bh3SHj8/1280x720);" id="top">
+    <div class="fullscreen-cover imaged" style="background-image: url(pim_members.png);" id="top">
         <div class="fullcenter bg-transparent-img">
             <div>
                 <h1>PimHack2022</h1>
                 <br />
-                ものづくりで世界は一つになる。
+                Hackathon as a Service
                 <br /><br />
                 <a href="#about"><i class="bi bi-arrow-down-circle"></i></a>
             </div>
         </div>
     </div>
 
-    <div id="about" class="fullscreen-cover">
-        <div class="fullcenter">
+    <div id="about" class="fullscreen-cover imaged" style="background-image: url(team.jpg);" id="top">
+        <div class="fullcenter bg-transparent-img">
             <div>
                 <h2>PimHackとは</h2>
-                <p>　PimHackはPimが運営する部内大規模ハッカソンです。</p>
-                <p>　毎年、多くの部員が自分の<b>やりたいこと</b>を見つけ、班のメンバーとそのビジョンを共有し、協力してものづくりを行っています。</p>
+                <p>PimHackはPimが運営する部内大規模ハッカソンです。</p>
+                <p>毎年、多くの部員が自分の<b>やりたいこと</b>を見つけ、班のメンバーとそのビジョンを共有し、協力してものづくりを行っています。</p>
+                <br />
+                <a href="#samples"><i class="bi bi-arrow-down-circle"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div id="samples" class="fullscreen-cover imaged" style="background-image: url(team.jpg);" id="top">
+        <div class="fullcenter bg-transparent-img">
+            <div>
+                <h2>作例: <span id="sample_name"></span></h2>
+                <p id="sample_text"></p>
                 <br />
                 <a href="#covid19"><i class="bi bi-arrow-down-circle"></i></a>
             </div>
         </div>
     </div>
 
-    <div id="covid19" class="fullscreen-cover">
-        <div class="fullcenter">
+
+    <div id="covid19" class="fullscreen-cover imaged" style="background-image: url(online.jpg);" id="top">
+        <div class="fullcenter bg-transparent-img">
             <div>
                 <h2>新型コロナウイルス COVID-19 対策</h2>
                 <p>現在、COVID-19が猛威を振るっており、対面での活動にリスクが伴います。</p>
                 <p>Pimでは、同一の場所に集まることを避けるため、例年より開発期間を伸ばし、1回の集合時間を短くする運用を行っております。</p>
+                <p>さらに、オフラインで集まる人数を最小限にし、オペレータ以外はライブ配信やチャットルームで参加する方式も運用しています。</p>
                 <p>また、オンラインにて開発が可能なチームはオンライン開発を行い、徹底した感染防止を行います。</p>
             </div>
         </div>
     </div>
 
+    <script>
+        const sample_images = [
+            ['takehigo.png', '竹ひごブリッジ', '構造物をいかにシンプルに作りそれでいて強度を保つか。最善解を見つけます。'],
+            ['bgame.jpg', '自作ボードゲーム', 'ボードゲームをルールから自作しました。'],
+            ['grapplerush.webp', '自作ゲーム', '新感覚ワイヤーアクション！ 宙を自在に舞い敵を狙い撃て！'],
+        ];
+        let current_image = -1;
+        function slideshow() {
+            current_image++;
+            if (current_image >= sample_images.length) {
+                current_image = 0;
+            }
 
-
-    <footer>
-        Photo by <a href="https://unsplash.com/photos/Q1p7bh3SHj8">NASA</a> on <a
-            href="https://unsplash.com/">Unsplash</a>
-    </footer>
+            document.getElementById('samples').setAttribute('style', 'background-image: url(' + sample_images[current_image][0] + ');');
+            document.getElementById('sample_name').innerText = sample_images[current_image][1];
+            document.getElementById('sample_text').innerText = sample_images[current_image][2];
+        }
+        setInterval(slideshow, 5000);
+        slideshow();
+    </script>
 </body>
 
 </html>
